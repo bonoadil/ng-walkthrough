@@ -264,6 +264,7 @@ angular.module('ng-walkthrough', [])
                         moveTextToBottom(startTop);
                     }
 
+		    var path = 'M' + startLeft + ',' + startTop + ' Q' + startLeft + ',' + endTop + ' ' + endLeft + ',' + endTop;
                     var arrowSvgDom =
                         '<svg width="100%" height="100%">' +
                         '<defs>' +
@@ -271,12 +272,12 @@ angular.module('ng-walkthrough', [])
                         '<path d="M2,1 L2,10 L10,6 L2,2" style="fill:#fff;" />' +
                         '</marker>' +
                         '</defs>' +
-                        '<path d="M' + startLeft + ',' + startTop + ' Q' + startLeft + ',' + endTop + ' ' + endLeft + ',' + endTop + '"' +
+                        '<path d="[path]"' +
                         'style="stroke:#fff; stroke-width: 2px; fill: none;' +
                         'marker-end: url(#arrow);"/>' +
                         '/>' +
                         '</svg>';
-
+			arrowSvgDom = arrowSvgDom.replace('[path]', path);
 
                     scope.walkthroughArrowElement.append(arrowSvgDom);
                 };
